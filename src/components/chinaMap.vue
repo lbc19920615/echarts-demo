@@ -190,7 +190,7 @@ export default {
           };
 
           if (self.onClickMap) {
-            self.onClickMap(childParentMapObj)
+            self.onClickMap(childParentMapObj, name)
           }
         }
       });
@@ -201,13 +201,15 @@ export default {
     backUpMap() {
       let self = this
       let childParentMapObj = this.childParentMapObj;
-      this.loadMap(childParentMapObj.map, childParentMapObj.name, {
+      self.loadMap(childParentMapObj.map, childParentMapObj.name, {
         code: childParentMapObj.code,
         isFull: childParentMapObj.isFull,
       });
 
+      // console.log(childParentMapObj)
       if (childParentMapObj.map !== "china") {
-        childParentMapObj = childParentMapObj.parent;
+        // childParentMapObj = childParentMapObj.parent;
+        self.$set(self, 'childParentMapObj', childParentMapObj.parent)
       } else {
         childParentMapObj = null;
         self.isShowBack = false
