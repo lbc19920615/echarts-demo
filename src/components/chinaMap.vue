@@ -44,7 +44,7 @@ export default {
     /**
      * 加载map
      **/
-    loadMap(map, name, { code, isFull, onClickMap, isAction = true}) {
+    loadMap(map, name, { code, isFull, isAction = true}) {
       // map请求程序
       let mapGetCaches = this.mapGetCaches
       // 地图缓存数据
@@ -109,7 +109,7 @@ export default {
               name,
               code,
               isFull
-            }, onClickMap)
+            })
           }
         })
 
@@ -153,9 +153,8 @@ export default {
      * @param map
      * @param code
      * @param isFull
-     * @param onClickMap
      */
-    setMapAction({map, name, code, isFull}, onClickMap) {
+    setMapAction({map, name, code, isFull}) {
       let self = this
       let chart = this.chart
 
@@ -190,8 +189,8 @@ export default {
             parent: childParentMapObj,
           };
 
-          if (onClickMap) {
-            onClickMap(childParentMapObj)
+          if (self.onClickMap) {
+            self.onClickMap(childParentMapObj)
           }
         }
       });
@@ -228,22 +227,20 @@ export default {
         self.isShowBack = true
       }
     },
+    onClickMap(childParentMapObj, name) {
+      this.handleBackStatus(childParentMapObj, name)
+    },
     /**
      * 当echarts init
      * @param chart
      * @param echarts
      */
     onEchartsInit(chart, echarts) {
-      let self = this
       this.chart = chart
       this.echarts = echarts
-      let name = '中国'
       this.loadMap("china", "中国", {
         code: 100000,
         isFull: true,
-        onClickMap(childParentMapObj) {
-          self.handleBackStatus(childParentMapObj, name)
-        }
       });
     }
   }
