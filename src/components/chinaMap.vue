@@ -9,6 +9,9 @@
 
 .china-map-back {
   cursor: pointer;
+  position: fixed;
+  top: 30px;
+  right: 30px;
 }
 </style>
 
