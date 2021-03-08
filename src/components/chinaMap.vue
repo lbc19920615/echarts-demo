@@ -14,6 +14,7 @@
 
 <template>
   <div>
+<!--    {{childParentMapObj}}-->
     <div class="china-map-back"
         v-if="isShowBack" ref="oBack" @click="backUpMap">{{childParentMapObj && childParentMapObj.name ?
         '返回' + childParentMapObj.name : '返回'}}</div>
@@ -105,6 +106,7 @@ export default {
           if (isAction) {
             self.setMapAction({
               map,
+              name,
               code,
               isFull
             }, onClickMap)
@@ -153,7 +155,7 @@ export default {
      * @param isFull
      * @param onClickMap
      */
-    setMapAction({map, code, isFull}, onClickMap) {
+    setMapAction({map, name, code, isFull}, onClickMap) {
       let self = this
       let chart = this.chart
 
