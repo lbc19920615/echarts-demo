@@ -66,7 +66,7 @@ export default {
       version: ''
     }
   },
-  watch: {  
+  watch: {
     // eslint-disable-next-line no-unused-vars
     childParentMapObj(newVal) {
       if (this.onSetMapData) {
