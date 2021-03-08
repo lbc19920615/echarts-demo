@@ -1,5 +1,9 @@
 # echarts-demo
 
+## Screenshot
+
+![](./Screenshot.png)
+
 ## Project setup
 ```
 yarn install
