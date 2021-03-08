@@ -4,7 +4,7 @@
   height: 800px;
   position: absolute;
   left: calc(50% - 500px);
-  top: 100px;
+  top: 30px;
 }
 
 .china-map-back {
@@ -12,6 +12,10 @@
   position: fixed;
   top: 30px;
   right: 30px;
+}
+
+.parent-map {
+
 }
 </style>
 
@@ -22,16 +26,35 @@
         v-if="isShowBack" ref="oBack" @click="backUpMap">{{childParentMapObj && childParentMapObj.name ?
         '返回' + childParentMapObj.name : '返回'}}</div>
     <v-echarts class="china-map" @init="onEchartsInit"></v-echarts>
+
+    <map-chart ref="parentMap"></map-chart>
   </div>
 </template>
 
 <script>
 import VEcharts from "@/components/vEcharts";
 import axios from 'axios'
+import MapChart from "@/components/mapChart";
+import {commonMapChartMixin} from "@/utils/mapChart";
+
+function getMapReqType(areaCode, isFull) {
+  return areaCode +
+      (isFull ? "_full" : "")
+}
+
+function getMapKey(code) {
+  if (code === 100000) {
+    return 'china'
+  }
+  return code
+}
 
 export default {
   name: "chinaMap",
-  components: {VEcharts},
+  components: {MapChart, VEcharts},
+  mixins: [
+    commonMapChartMixin
+  ],
   data() {
     return {
       isShowBack: false,
@@ -43,7 +66,32 @@ export default {
       version: ''
     }
   },
+  watch: {  
+    // eslint-disable-next-line no-unused-vars
+    childParentMapObj(newVal) {
+      if (this.onSetMapData) {
+        this.onSetMapData()
+      }
+    }
+  },
   methods: {
+    getAreaMap(areaCode, isFull) {
+      let mapGetCaches = this.mapGetCaches
+      let type = getMapReqType(areaCode, isFull)
+      if (mapGetCaches && mapGetCaches[type]) {
+        return Promise.resolve(mapGetCaches[type]);
+      } else {
+        return axios
+            .get(
+                "http://42.192.232.58:3000/proxy/areas_v2/bound/" +
+                type +
+                ".json?proxy_key=7f297416175d8b022098ded9548eb276"
+            )
+            .then(function (res) {
+              return Promise.resolve(res.data);
+            });
+      }
+    },
     /**
      * 加载map
      **/
@@ -64,46 +112,25 @@ export default {
       const echarts = this.echarts
       const chart = this.chart
 
-      function getMapReqType(areaCode, isFull) {
-        return areaCode +
-            (isFull ? "_full" : "")
-      }
-
-      function getAreaMap(areaCode, isFull) {
-        let type = getMapReqType(areaCode, isFull)
-        if (mapGetCaches && mapGetCaches[type]) {
-          return Promise.resolve(mapGetCaches[type]);
-        } else {
-          return axios
-              .get(
-                  "http://42.192.232.58:3000/proxy/areas_v2/bound/" +
-                  type +
-                  ".json?proxy_key=7f297416175d8b022098ded9548eb276"
-              )
-              .then(function (res) {
-                return Promise.resolve(res.data);
-              });
-        }
-      }
-
       let type = getMapReqType(code, isFull)
       let promise = Promise.resolve();
 
       if (!mapCaches[map]) {
-        promise = getAreaMap(code, isFull)
-            .then((mapData) => {
-              echarts.registerMap(map, mapData);
+        promise = self.getAreaMap(code, isFull)
+          .then((mapData) => {
+            echarts.registerMap(map, mapData);
 
-              mapCaches[map] = mapData;
-              mapGetCaches[type] = mapData
-            });
+            mapCaches[map] = mapData;
+            mapGetCaches[type] = mapData
+            // console.log('mapCaches', mapCaches, map)
+
+          });
       }
 
       promise.then(() => {
         const option = self.getMapOption({map});
         chart.clear();
         chart.setOption(option);
-
 
         self.$nextTick(() => {
           if (isAction) {
@@ -118,37 +145,18 @@ export default {
 
       });
     },
-    /**
-     * 获取map option
-     */
-    getMapOption({ map }) {
-      return  {
-        title: {
-          text: name,
-          left: "center",
-        },
-        series: [
-          {
-            name: name,
-            type: "map",
+    onSetMapData() {
+      // console.log('parentMap', this.childParentMapObj)
+      if ( this.childParentMapObj &&  this.childParentMapObj.name &&  this.childParentMapObj.code) {
+        let mapCaches = this.mapCaches
+        let map = getMapKey(this.childParentMapObj.code)
+        // console.log(mapCaches,  this.childParentMapObj)
+        if (mapCaches[map]) {
+          this.$refs.parentMap.render({
             map,
-            roam: true, // 是否开启鼠标缩放和平移漫游
-            itemStyle: {
-              // 地图区域的多边形 图形样式
-              normal: {
-                // 是图形在默认状态下的样式
-                label: {
-                  show: true, //是否显示标签
-                  textStyle: {
-                    color: "rgba(255,255,255,0)",
-                  },
-                },
-              },
-            },
-            aspectScale: map === "china" ? 0.75 : 1,
-            top: "10%", //组件距离容器的距离
-          },
-        ],
+            mapData: mapCaches[map],
+          })
+        }
       }
     },
     /**
@@ -243,7 +251,7 @@ export default {
     onEchartsInit(chart, echarts) {
       this.chart = chart
       this.echarts = echarts
-      this.loadMap("china", "中国", {
+      this.loadMap(getMapKey(100000), "中国", {
         code: 100000,
         isFull: true,
       });
