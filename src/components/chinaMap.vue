@@ -130,6 +130,7 @@ export default {
       promise.then(() => {
         const option = self.getMapOption({map});
         chart.clear();
+        // console.log(option)
         chart.setOption(option);
 
         self.$nextTick(() => {
