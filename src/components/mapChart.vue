@@ -42,7 +42,7 @@ export default {
       chart.clear();
       chart.setOption(option);
       this.echarts.registerMap(map, mapData);
-      console.log('mapData', mapData)
+      // console.log('mapData', mapData)
     }
   }
 }

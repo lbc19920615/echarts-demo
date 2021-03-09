@@ -36,7 +36,7 @@ export let commonMapChartMixin = {
         ],
       }
 
-      console.log('map', map)
+      // console.log('map', map)
 
       if (map === 'china') {
         option.series[0] = Object.assign(option.series[0], {
