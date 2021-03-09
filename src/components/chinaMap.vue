@@ -21,7 +21,7 @@
 
 <template>
   <div>
-    {{childParentMapObj}}
+<!--    {{childParentMapObj}}-->
     <div class="china-map-back"
         v-if="isShowBack" ref="oBack" @click="backUpMap">{{childParentMapObj && childParentMapObj.name ?
         '返回' + childParentMapObj.name : '返回'}}</div>
@@ -134,7 +134,12 @@ export default {
       }
 
       promise.then(() => {
-        const option = self.getMapOption({map});
+        const option = self.getMapOption({
+          map,
+          mergeOption: {
+            backgroundColor: '#b4eeff',
+          }
+        });
         chart.clear();
         // console.log(option)
         chart.setOption(option);

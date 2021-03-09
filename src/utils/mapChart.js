@@ -3,13 +3,12 @@ export let commonMapChartMixin = {
     /**
      * 获取map option
      */
-    getMapOption({ map }) {
+    getMapOption({ map, mergeOption }) {
       let option = {
         title: {
           text: name,
           left: "center",
         },
-        // backgroundColor: '#b4eeff',
         // visualMap: {
         //   min: 800,
         //   max: 50000,
@@ -47,14 +46,14 @@ export let commonMapChartMixin = {
             label: {
               show: true, //是否显示标签
               textStyle: {
-                color: "#fff",
+                color: "#efefef",
               },
             },
           },
           itemStyle: {
             // 地图区域的多边形 图形样式
             normal: {
-              areaColor: '#085fa2',
+              areaColor: '#1171bc',
               borderColor: '#0ecdfd',
               // 是图形在默认状态下的样式
               label: {
@@ -82,6 +81,10 @@ export let commonMapChartMixin = {
             // },
           ]
         })
+      }
+
+      if (mergeOption) {
+        option = Object.assign(option, mergeOption)
       }
 
       return option
