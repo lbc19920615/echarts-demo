@@ -1,18 +1,13 @@
 <template>
   <div id="app">
-    <china-map ref="map"></china-map>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
-
-import ChinaMap from "@/components/chinaMap";
 export default {
   name: 'app',
   components: {
-    ChinaMap
-
   }
 }
 </script>
