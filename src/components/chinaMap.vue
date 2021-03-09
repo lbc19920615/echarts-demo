@@ -21,7 +21,7 @@
 
 <template>
   <div>
-<!--    {{childParentMapObj}}-->
+    {{childParentMapObj}}
     <div class="china-map-back"
         v-if="isShowBack" ref="oBack" @click="backUpMap">{{childParentMapObj && childParentMapObj.name ?
         '返回' + childParentMapObj.name : '返回'}}</div>
@@ -69,8 +69,14 @@ export default {
   watch: {
     // eslint-disable-next-line no-unused-vars
     childParentMapObj(newVal) {
+      // console.log('childParentMapObj', newVal)
       if (this.onSetMapData) {
         this.onSetMapData()
+      }
+    },
+    isShowBack(newVal) {
+      if (!newVal) {
+        this.$refs.parentMap.clear()
       }
     }
   },
@@ -148,7 +154,7 @@ export default {
     },
     onSetMapData() {
       // console.log('parentMap', this.childParentMapObj)
-      if ( this.childParentMapObj &&  this.childParentMapObj.name &&  this.childParentMapObj.code) {
+      if ( this.childParentMapObj && this.childParentMapObj.name &&  this.childParentMapObj.parent) {
         let mapCaches = this.mapCaches
         let map = getMapKey(this.childParentMapObj.code)
         // console.log(mapCaches,  this.childParentMapObj)
@@ -157,7 +163,11 @@ export default {
             map,
             mapData: mapCaches[map],
           })
+        } else {
+          this.$refs.parentMap.clear()
         }
+      } else {
+        this.$refs.parentMap.clear()
       }
     },
     /**
@@ -223,7 +233,7 @@ export default {
         // childParentMapObj = childParentMapObj.parent;
         self.$set(self, 'childParentMapObj', childParentMapObj.parent)
       } else {
-        childParentMapObj = null;
+        self.$set(self, 'childParentMapObj', null)
         self.isShowBack = false
       }
     },

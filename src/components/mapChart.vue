@@ -36,6 +36,10 @@ export default {
       this.chart = chart
       this.echarts = echarts
     },
+    clear() {
+      let chart = this.chart
+      chart.clear();
+    },
     render({map, mapData}) {
       let chart = this.chart
       const option = this.getMapOption({map});
