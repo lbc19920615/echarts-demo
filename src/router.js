@@ -2,9 +2,23 @@
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 import VueRouter from "vue-router";
 import dashboard from "@/pages/dashboard";
+import demoaa from "@/pages/demoaa";
 
-const routes = [
-  { path: '*', component:  dashboard },
+export const routes = [
+  {
+    path: '/',
+    component:  dashboard,
+    meta: {
+      title: 'HOME'
+    }
+  },
+  {
+    path: '/demoaa',
+    component: demoaa,
+    meta: {
+      title: 'demoaa'
+    }
+  },
 ]
 
 export const router = new VueRouter({
