@@ -1,12 +1,25 @@
+
+
 <template>
-<div>
-demoaa
-</div>
+  <div>
+    <al-echart :beforeRender="beforeRender"></al-echart>
+  </div>
 </template>
 
 <script>
+import AlEchart from "@/components/alEchart";
 export default {
-name: "demoaa"
+name: "demoaa",
+  components: {AlEchart},
+  data() {
+    return {
+    }
+  },
+  methods: {
+    beforeRender() {
+      return {}
+    }
+  }
 }
 </script>
 

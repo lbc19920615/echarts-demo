@@ -1,5 +1,12 @@
+<style>
+.v-charts {
+  width: 600px;
+  height: 600px;
+}
+</style>
+
 <template>
-  <div ref="main"></div>
+  <div class="v-charts" ref="main"></div>
 </template>
 
 <script>
