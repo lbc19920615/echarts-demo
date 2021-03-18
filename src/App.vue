@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div>
-      <router-link
-          v-for="(route, index) in routes"
-          :key="index"
-          :to="route.path">{{route.meta.title}}</router-link>
-    </div>
+<!--    <div>-->
+<!--      <router-link-->
+<!--          v-for="(route, index) in routes"-->
+<!--          :key="index"-->
+<!--          :to="route.path">{{route.meta.title}}</router-link>-->
+<!--    </div>-->
     <router-view></router-view>
   </div>
 </template>

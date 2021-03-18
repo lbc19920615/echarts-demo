@@ -2,6 +2,7 @@
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 import VueRouter from "vue-router";
 import dashboard from "@/pages/dashboard";
+// eslint-disable-next-line no-unused-vars
 import demoaa from "@/pages/demoaa";
 
 export const routes = [
@@ -12,13 +13,13 @@ export const routes = [
       title: 'HOME'
     }
   },
-  {
-    path: '/demoaa',
-    component: demoaa,
-    meta: {
-      title: 'demoaa'
-    }
-  },
+  // {
+  //   path: '/demoaa',
+  //   component: demoaa,
+  //   meta: {
+  //     title: 'demoaa'
+  //   }
+  // },
 ]
 
 export const router = new VueRouter({

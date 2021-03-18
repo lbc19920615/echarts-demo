@@ -8,6 +8,7 @@
 
 <script>
 import VEcharts from "@/components/vEcharts";
+
 export default {
   name: "alEchart",
   props: {
@@ -18,7 +19,8 @@ export default {
           return v
         }
       }
-    }
+    },
+    title: String
   },
   components: {VEcharts},
   data() {
@@ -29,24 +31,16 @@ export default {
     }
   },
   methods: {
-    render() {
+    render(option = {}) {
       this.cachedOptions = {
         title: {
-          text: 'ECharts 入门示例'
+          text: this.title
         },
         tooltip: {},
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-        },
         yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }],
-        ...options
+        ...option
       }
-      this.chart.setOption();
+      this.chart.setOption(this.cachedOptions);
     },
     /**
      * 当echarts init
@@ -57,9 +51,9 @@ export default {
       this.chart = chart
       this.echarts = echarts
       this.$nextTick(() => {
-        this.render()
+        // this.render()
       })
-    }
+    },
   }
 }
 </script>
