@@ -13,6 +13,13 @@ export const routes = [
       title: 'HOME'
     }
   },
+  {
+    path: '/threemap',
+    component: () => import('@/pages/threemap'),
+    meta: {
+      title: 'demoaa'
+    }
+  },
   // {
   //   path: '/demoaa',
   //   component: demoaa,

@@ -5,6 +5,8 @@
       <a-button type="primary" size="small"
       @click="openModalChart('bar')"
       >打开bar</a-button>
+
+      <router-link to="/threemap">3d ditu</router-link>
     </div>
 
     <china-map></china-map>
