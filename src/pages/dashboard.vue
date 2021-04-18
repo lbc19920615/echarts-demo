@@ -5,10 +5,14 @@
       <a-button type="primary" size="small"
       @click="openModalChart('bar')"
       >打开bar</a-button>
-
-      <router-link to="/threemap">3d di</router-link>
     </div>
 
+    <h3>
+      demos
+    </h3>
+    <div>
+        <router-link to="/threemap">3d di</router-link>
+    </div>
 
     <v-modal name="bar" :resizable="true"
     :height="600" :width="900"
