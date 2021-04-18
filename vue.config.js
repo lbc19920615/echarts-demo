@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '/charts',
   css: {
     loaderOptions: {
       sass: {
