@@ -4,11 +4,11 @@
       <a-button type="primary" size="small" @click="openModalChart('bar')"
         >打开bar</a-button
       >
+      <router-link to="/threemap">3d地图</router-link>
     </div>
 
-    <h3>demos</h3>
-    <div>
-      <router-link to="/threemap">3d地图</router-link>
+    <div class="grid justify-items-center">
+      <baidu-mapv></baidu-mapv>
     </div>
 
     <v-modal name="bar" :resizable="true" :height="600" :width="900">
@@ -20,6 +20,7 @@
 <script>
 import AlEchart from "@/components/alEchart";
 import { BasicSerie } from "@/utils/series";
+import BaiduMapv from "../components/baiduMapv.vue";
 
 var data = [];
 for (let i = 0; i < 5; ++i) {
@@ -28,7 +29,7 @@ for (let i = 0; i < 5; ++i) {
 
 export default {
   name: "dashboard",
-  components: { AlEchart },
+  components: { AlEchart, BaiduMapv },
   mounted() {
     // this.openModalChart('bar')
   },
