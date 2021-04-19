@@ -1,5 +1,5 @@
 <style lang="scss">
-#map {
+#map_container {
   width: 1024px;
   height: 768px;
 }
@@ -7,110 +7,139 @@
 
 <template>
   <div>
-    <div id="map"></div>
-    <canvas id="canvas"></canvas>
+    <div id="map_container"></div>
   </div>
 </template>
 
 <script>
-import * as mapv from "mapv";
-const BMap = window.BMap
+// const BMap = window.BMap
+const mapvgl = window.mapvgl
+const mapv = window.mapv
 
 export default {
   name: "baiduMapv",
   mounted() {
 
 
-    let self = this
-    // 百度地图API功能
-    var map = new BMap.Map("map", {
-      enableMapClick: false,
-    }); // 创建Map实例
-    map.centerAndZoom(new BMap.Point(105.403119, 38.028658), 5); // 初始化地图,设置中心点坐标和地图级别
-    map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
-
-    /*
-        map.setMapStyle({
-            style: 'light'
+      var map = window.initMap({
+            style: window.whiteStyle,
+            tilt: 10,
+            center: [109.792816,27.702774],
+            zoom: 5,
+            skyColors: [
+                // 地面颜色
+                'rgba(226, 237, 248, 0)',
+                // 天空颜色
+                'rgba(186, 211, 252, 1)'
+            ]
         });
-        */
 
-    var randomCount = 300;
+        var data = [];
 
-    var data = [];
+        var citys = [
+            '北京',
+            '天津',
+            '上海',
+            '重庆',
+            '石家庄',
+            '太原',
+            '呼和浩特',
+            '哈尔滨',
+            '长春',
+            '沈阳',
+            '济南',
+            '南京',
+            '合肥',
+            '杭州',
+            '南昌',
+            '福州',
+            '郑州',
+            '武汉',
+            '长沙',
+            '广州',
+            '南宁',
+            '西安',
+            '银川',
+            '兰州',
+            '西宁',
+            '乌鲁木齐',
+            '成都',
+            '贵阳',
+            '昆明',
+            '拉萨',
+            '海口'
+        ];
 
-    var citys = [
-      "北京",
-      "天津",
-      "上海",
-      "重庆",
-      "石家庄",
-      "太原",
-      "呼和浩特",
-      "哈尔滨",
-      "长春",
-      "沈阳",
-      "济南",
-      "南京",
-      "合肥",
-      "杭州",
-      "南昌",
-      "福州",
-      "郑州",
-      "武汉",
-      "长沙",
-      "广州",
-      "南宁",
-      "西安",
-      "银川",
-      "兰州",
-      "西宁",
-      "乌鲁木齐",
-      "成都",
-      "贵阳",
-      "昆明",
-      "拉萨",
-      "海口",
-    ];
+        var randomCount = 100000;
 
-    // 构造数据
-    while (randomCount--) {
-      var cityCenter = mapv.utilCityCenter.getCenterByCityName(
-        citys[parseInt(Math.random() * citys.length)]
-      );
-      data.push({
-        geometry: {
-          type: "Point",
-          coordinates: [
-            cityCenter.lng - 2 + Math.random() * 4,
-            cityCenter.lat - 2 + Math.random() * 4,
-          ],
-        },
-        count: 30 * Math.random(),
-      });
-    }
+        // 构造数据
+        while (randomCount--) {
+            var cityCenter = mapv.utilCityCenter.getCenterByCityName(
+                citys[parseInt(Math.random() * citys.length, 10)]
+            );
+            data.push({
+                geometry: {
+                    type: 'Point',
+                    coordinates: [cityCenter.lng - 2 + Math.random() * 4, cityCenter.lat - 2 + Math.random() * 4]
+                }
+            });
+        }
 
-    var dataSet = new mapv.DataSet(data);
+        var view = new mapvgl.View({
+            map: map
+        });
 
-    var options = {
-      fillStyle: "rgba(255, 50, 50, 0.6)",
-      shadowColor: "rgba(255, 50, 50, 1)",
-      shadowBlur: 30,
-      globalCompositeOperation: "lighter",
-      methods: {
-        click: function (item) {
-          console.log(item);
-          self.$alert(JSON.stringify(item.geometry, null, 2), '标题名称', {}).catch(() => console.error)
-        },
-      },
-      size: 5,
-      // updateImmediate: true,
-      draw: "simple",
-    };
+        var barLayer = new mapvgl.BarLayer({
+            height: 1000 * 1000,
+            size: 20 * 1000,
+            edgeCount: 30
+        });
+        view.addLayer(barLayer);
 
-    var mapvLayer = new mapv.baiduMapLayer(map, dataSet, options);
+        var clusterLayer = new mapvgl.ClusterLayer({
+            minSize: 30, // 聚合点显示的最小直径
+            maxSize: 50, // 聚合点显示的最大直径
+            clusterRadius: 150, // 聚合范围半径
+            gradient: {0: 'blue', 0.5: 'green', 1.0: 'red'}, // 聚合点颜色梯度
+            maxZoom: 15, // 聚合的最大级别，当地图放大级别高于此值将不再聚合
+            minZoom: 5, // 聚合的最小级别，当地图放大级别低于此值将不再聚合
+            // 是否显示文字
+            showText: true,
+            // 开始聚合的最少点数，点数多于此值才会被聚合
+            minPoints: 5,
+            // 设置文字样式
+            textOptions: {
+                fontSize: 12,
+                color: 'white',
+                // 格式化数字显示
+                format: function (count) {
+                    return count >= 10000 ? Math.round(count / 1000) + 'k'
+                    : count >= 1000 ? Math.round(count / 100) / 10 + 'k' : count;
+                }
+            },
+            // 可通过此生命周期函数获得下次要渲染的已聚合的数据
+            beforeRender(data) {
+                // 地图级别超过时使用默认渲染
+                if (map.getZoom() > 8) {
+                    barLayer.setData([])
+                    return true;
+                }
+                let points = [];
+                data.forEach(item => {
+                    points.push({
+                        geometry: item.geometry,
+                        height: (item.properties.point_count || 1) * 100,
+                        color: item.properties.color
+                    })
+                });
+                barLayer.setData(points);
+                // 显式地返回false可以阻止默认的渲染，避免影响自己的渲染逻辑
+                return false;
+            }
+        });
 
-    console.log(mapvLayer)
+        view.addLayer(clusterLayer);
+        clusterLayer.setData(data);
   },
 };
 </script>
