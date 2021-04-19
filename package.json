@@ -13,6 +13,7 @@
     "d3-geo": "^2.0.1",
     "dat.gui": "^0.7.7",
     "echarts": "^5.0.2",
+    "element-ui": "^2.15.1",
     "mapv": "^2.0.62",
     "three": "^0.121.0",
     "vue": "^2.6.10",
@@ -32,20 +33,6 @@
     "sass-loader": "^10.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {
