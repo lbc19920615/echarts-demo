@@ -1,9 +1,8 @@
 <template>
   <div class="container">
     <div>
-      <a-button type="primary" size="small" @click="openModalChart('bar')"
-        >打开bar</a-button
-      >
+      <el-button type="primary" size="small" @click="openModalChart('bar')"
+        >打开bar</el-button>
       <router-link to="/threemap">3d地图</router-link>
     </div>
 

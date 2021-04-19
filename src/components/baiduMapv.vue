@@ -14,11 +14,14 @@
 
 <script>
 import * as mapv from "mapv";
-console.log(mapv);
+const BMap = window.BMap
 
 export default {
   name: "baiduMapv",
   mounted() {
+
+
+    let self = this
     // 百度地图API功能
     var map = new BMap.Map("map", {
       enableMapClick: false,
@@ -97,6 +100,7 @@ export default {
       methods: {
         click: function (item) {
           console.log(item);
+          self.$alert(JSON.stringify(item.geometry, null, 2), '标题名称', {}).catch(() => console.error)
         },
       },
       size: 5,
@@ -105,6 +109,8 @@ export default {
     };
 
     var mapvLayer = new mapv.baiduMapLayer(map, dataSet, options);
+
+    console.log(mapvLayer)
   },
 };
 </script>

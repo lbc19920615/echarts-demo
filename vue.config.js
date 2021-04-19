@@ -1,5 +1,8 @@
 module.exports = {
   publicPath: '/charts',
+  devServer: {
+    disableHostCheck: true
+  },
   css: {
     loaderOptions: {
       postcss: {

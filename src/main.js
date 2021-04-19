@@ -15,11 +15,14 @@ import VModal from 'vue-js-modal'
 Vue.use(VModal, { componentName: 'VModal' })
 
 /**
- * 引入antd
+ * 引入Element UI
  */
-import 'ant-design-vue/dist/antd.css'
-import Button from 'ant-design-vue/lib/button'
-Vue.component(Button.name, Button)
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI, {
+  size: 'medium'
+})
 
 Vue.config.productionTip = false
 
