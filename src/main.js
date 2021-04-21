@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import './index.css'
 
+
+import './app.scss'
+
 /**
  * 引入VueRouter
  */

@@ -28,6 +28,7 @@
 </template>
 
 <script>
+
 import chinaJson from "@/utils/threemap/china.json";
 import * as d3geo from "d3-geo";
 import { buildLightSystem, buildAuxSystem } from "@/utils/threemap/helpers";

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="fui-app" id="app">
 <!--    <div>-->
 <!--      <router-link-->
 <!--          v-for="(route, index) in routes"-->

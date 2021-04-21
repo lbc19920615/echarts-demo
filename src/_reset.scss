@@ -1,0 +1,12 @@
+.fui-app {
+  .v--modal-overlay .v--modal-box {
+    padding: 1rem;
+      box-sizing: content-box;
+      background-color: transparent;
+      box-shadow: none;
+  }
+
+  .v--modal-overlay {
+    background-color: rgba(#000, .7);
+  }
+}
