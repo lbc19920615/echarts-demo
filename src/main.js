@@ -5,6 +5,8 @@ import './index.css'
 
 import './app.scss'
 
+import './elements/lit.ts'
+
 /**
  * 引入VueRouter
  */
