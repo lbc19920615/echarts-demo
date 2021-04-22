@@ -1,0 +1,7 @@
+one-dialog {
+  &[open] {
+    &::part(wrapper) {
+      z-index: 3000;
+    }
+  }
+}

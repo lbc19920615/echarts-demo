@@ -5,7 +5,9 @@ import './index.css'
 
 import './app.scss'
 
+// webcomponents
 import './elements/lit.ts'
+import './elements/dialog/dialog'
 
 /**
  * 引入VueRouter

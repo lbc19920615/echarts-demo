@@ -12,7 +12,7 @@
         class="el-link el-link--primary ml-3"
         to="/threemap">3d地图</router-link>
     </div>
-    
+
     <div class="grid justify-items-center">
       <baidu-mapv></baidu-mapv>
     </div>

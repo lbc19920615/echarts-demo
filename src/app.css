@@ -96,3 +96,7 @@ fui-section::part(fui-section)::before, fui-section::part(fui-section)::after {
   width: 0.5rem;
   height: 0.5rem;
 }
+
+one-dialog ::part(wrapper) {
+  z-index: 3000;
+}
