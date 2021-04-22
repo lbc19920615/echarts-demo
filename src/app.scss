@@ -12,7 +12,10 @@
 , #111 1rem, transparent 1rem), linear-gradient(#111 1rem, transparent 1rem);
 }
 
-.fui-section {
+fui-section {
+  display: block;
+}
+fui-section::part(fui-section) {
   --fui-section-border-color: var(--fui-gray-600);
   border: 1px solid var(--fui-section-border-color);
   color: var(--fui-gray-700);

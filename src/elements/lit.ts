@@ -12,3 +12,10 @@ export class SimpleGreeting extends LitElement {
     return html`<p>Hello, ${this.name}!</p>`;
   }
 }
+
+@customElement('fui-section')
+export class FuiSectionElement extends LitElement {
+  render() {
+    return html`<div part="fui-section"><slot></slot></div>`;
+  }
+}

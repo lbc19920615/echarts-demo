@@ -11,21 +11,22 @@
       <router-link to="/threemap">3d地图</router-link>
     </div>
 
+    <simple-greeting></simple-greeting>
     
     <div class="grid justify-items-center">
       <baidu-mapv></baidu-mapv>
     </div>
 
     <v-modal name="pie" :height="600" :width="900">
-      <div class="fui-section" style="background-color: #fff;">
+      <fui-section style="background-color: #fff;">
         <al-echart ref="pie_chart" title="动态bar"></al-echart>
-      </div>
+      </fui-section>
     </v-modal>
 
     <v-modal name="bar" :height="600" :width="900">
-      <div class="fui-section" style="background-color: #fff;">
+      <fui-section style="background-color: #fff;">
         <al-echart ref="bar_chart" title="动态bar"></al-echart>
-      </div>
+      </fui-section>
     </v-modal>
   </div>
 </template>
