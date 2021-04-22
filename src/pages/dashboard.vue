@@ -8,10 +8,10 @@
         style="--grd-btn-width: 90px; --grd-btn-height: 30px;"
         >打开饼图</el-button>
 
-      <router-link to="/threemap">3d地图</router-link>
+      <router-link
+        class="el-link el-link--primary ml-3"
+        to="/threemap">3d地图</router-link>
     </div>
-
-    <simple-greeting></simple-greeting>
     
     <div class="grid justify-items-center">
       <baidu-mapv></baidu-mapv>
