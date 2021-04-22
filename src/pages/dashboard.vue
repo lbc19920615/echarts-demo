@@ -1,9 +1,11 @@
 <template>
   <div class="container fui-container--dark">
     <div>
-      <el-button size="small" @click="openModalChart('bar')"
+      <el-button type="grd" size="small" @click="openModalChart('bar')"
+        style="--grd-btn-width: 90px; --grd-btn-height: 30px;"
         >打开bar</el-button>
-      <el-button size="small" @click="openPieChart('pie')"
+      <el-button type="grd" size="small" @click="openPieChart('pie')"
+        style="--grd-btn-width: 90px; --grd-btn-height: 30px;"
         >打开饼图</el-button>
 
       <router-link to="/threemap">3d地图</router-link>
@@ -47,7 +49,6 @@ export default {
     PieChartMixin,
   ],
   mounted() {
-        this.openPieChart('pie')
   },
   methods: {
    
