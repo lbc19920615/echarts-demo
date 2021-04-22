@@ -3,12 +3,15 @@
   position: absolute;
   text-align: center;
   width: 100%;
-
 }
 </style>
 
 <template>
   <div class="page-threejs">
+    <simple-dialog open>
+      <div>sdsds</div>
+    </simple-dialog>
+
     <canvas class="canvas" ref="canvas" />
   </div>
 </template>
@@ -21,7 +24,7 @@ window.THREE = THREE;
 export default {
   mounted() {
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    var camera = new THREE.PerspectiveCamera(75, 1024/768, 0.1, 1000);
     var renderer = new THREE.WebGLRenderer({
       alpha: true,
       canvas: this.$refs.canvas
