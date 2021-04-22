@@ -18,6 +18,13 @@ export const routes = [
       title: 'demoaa'
     }
   },
+  {
+    path: '/threejs',
+    component: () => import('@/pages/threejs/threejs'),
+    meta: {
+      title: 'demoaa'
+    }
+  },
   // {
   //   path: '/demoaa',
   //   component: demoaa,

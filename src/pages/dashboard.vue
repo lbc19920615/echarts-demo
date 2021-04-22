@@ -11,6 +11,10 @@
       <router-link
         class="el-link el-link--primary ml-3"
         to="/threemap">3d地图</router-link>
+
+      <router-link
+        class="el-link el-link--primary ml-3"
+        to="/threejs">threejs</router-link>
     </div>
 
     <div class="grid justify-items-center">
