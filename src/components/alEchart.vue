@@ -8,6 +8,7 @@
 
 <script>
 import VEcharts from "@/components/vEcharts";
+import merge from 'lodash/merge'
 
 export default {
   name: "alEchart",
@@ -31,15 +32,15 @@ export default {
     }
   },
   methods: {
+    getChart() {
+      return this.chart
+    },
     render(option = {}) {
-      this.cachedOptions = {
+      this.cachedOptions = merge({
         title: {
           text: this.title
         },
-        tooltip: {},
-        yAxis: {},
-        ...option
-      }
+      }, option)
       this.chart.setOption(this.cachedOptions);
     },
     /**

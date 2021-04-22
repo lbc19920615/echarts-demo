@@ -1,18 +1,26 @@
 <template>
   <div class="container fui-container--dark">
     <div>
-      <el-button type="primary" size="small" @click="openModalChart('bar')"
+      <el-button size="small" @click="openModalChart('bar')"
         >打开bar</el-button>
+      <el-button size="small" @click="openPieChart('pie')"
+        >打开饼图</el-button>
+
       <router-link to="/threemap">3d地图</router-link>
     </div>
 
     
-
     <div class="grid justify-items-center">
       <baidu-mapv></baidu-mapv>
     </div>
 
-    <v-modal name="bar" :resizable="true" :height="600" :width="900">
+    <v-modal name="pie" :height="600" :width="900">
+      <div class="fui-section" style="background-color: #fff;">
+        <al-echart ref="pie_chart" title="动态bar"></al-echart>
+      </div>
+    </v-modal>
+
+    <v-modal name="bar" :height="600" :width="900">
       <div class="fui-section" style="background-color: #fff;">
         <al-echart ref="bar_chart" title="动态bar"></al-echart>
       </div>
@@ -24,6 +32,7 @@
 import AlEchart from "@/components/alEchart";
 import BaiduMapv from "../components/baiduMapv.vue";
 import BarChartMixin from './dashboard/bar_chart_mixin'
+import PieChartMixin from './dashboard/pie_chart_mixin'
 
 var data = [];
 for (let i = 0; i < 5; ++i) {
@@ -34,10 +43,11 @@ export default {
   name: "dashboard",
   components: { AlEchart, BaiduMapv },
   mixins: [
-    BarChartMixin
+    BarChartMixin,
+    PieChartMixin,
   ],
   mounted() {
-    // this.openModalChart('bar')
+        this.openPieChart('pie')
   },
   methods: {
    
