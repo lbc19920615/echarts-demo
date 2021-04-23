@@ -19,6 +19,33 @@
   }
 }
 
+@mixin grd-button() {
+  --grd-border-radius: 10px;
+  --grd-border-width: 3px;
+  border: var(--grd-border-width) solid #000;
+  background-color: transparent;
+  background-image: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+  border-radius: var(--grd-border-radius);
+  padding: 0;
+  border: none;
+
+  &:hover {
+    background-color: transparent;
+    animation: play-grd-btn 1.6s ease-in infinite;
+  }
+
+  > span {
+    width: var(--grd-btn-width);
+    height: var(--grd-btn-height);
+    line-height: var(--grd-btn-height);
+    display: block;
+    margin: 3px;
+    background-color: var(--grd-bgc, #fff);
+    border-radius: calc(var(--grd-border-radius) - var(--grd-border-width));
+  }
+}
+
+
 .fui-app {
   .v--modal-overlay .v--modal-box {
     padding: 1rem;
@@ -29,35 +56,6 @@
 
   .v--modal-overlay {
     background-color: rgba(#000, .7);
-  }
-
-  
-  @mixin grd-button() {
-    --grd-border-radius: 10px;
-    --grd-border-width: 3px;
-    border: var(--grd-border-width) solid #000;
-    background-color: transparent;
-    background-image: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
-    color: #fff;
-    border-radius: var(--grd-border-radius);
-    padding: 0;
-    border: none;
-
-    &:hover {
-      background-color: transparent;
-      animation: play-grd-btn 1.6s ease-in infinite;
-      color: #fff;
-    }
-
-    > span {
-      width: var(--grd-btn-width);
-      height: var(--grd-btn-height);
-      line-height: var(--grd-btn-height);
-      display: block;
-      margin: 3px;
-      background: #000;
-      border-radius: calc(var(--grd-border-radius) - var(--grd-border-width));
-    }
   }
 
   .el-button--grd {

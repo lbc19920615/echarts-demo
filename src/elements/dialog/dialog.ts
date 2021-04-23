@@ -3,18 +3,25 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('simple-dialog')
 export class SimpleDialog extends LitElement {
-  static styles = css`p { color: blue }`;
+  static styles = css``;
 
-  @property({ type: Boolean, attribute: 'open' })
+  @property({ type: Boolean, attribute: 'open', reflect: true  })
   open = false;
 
   render() {
-    return html`<div part="wrapper"><div part="close" @click="${this.onClickCloseBtn}" >x</div> 
-    Hello, ${this.open ? 'open' : 'closed'}!<slot></slot></div>`;
+    return html`<div part="wrapper" class="wrapper">
+      <div part="header"><div part="close" @click="${this.onClickCloseBtn}" >x</div></div>
+    <div part="body"><slot></slot></div>
+    </div>`;
   }
 
   onClickCloseBtn() {
-    this.open = !this.open
-    console.log(' this.open = !this.open')
+    this.open = false
+    // console.log(' this.open = !this.open')
+    let myEvent = new CustomEvent('closed', {
+      detail: { },
+      bubbles: true,
+      composed: true });
+    this.dispatchEvent(myEvent);
   }
 }

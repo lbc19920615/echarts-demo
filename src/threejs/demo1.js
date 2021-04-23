@@ -1,23 +1,23 @@
-export function DemoMeshPhongMaterial(THREE) {
+export function DemoMeshPhongMaterial(THREE, context) {
+  const size = [ 1024, 768 ]
+
   var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(75, 1024 / 768, 0.1, 1000);
+  var camera = new THREE.PerspectiveCamera(75, size[0] / size[1], 0.1, 1000);
   var renderer = new THREE.WebGLRenderer({
     alpha: true,
-    canvas: this.$refs.canvas
+    canvas: context.$refs.canvas
   });
 
-  renderer.setSize(1024, 768);
+  renderer.setSize(size[0], size[1]);
 
   /* Create Lights: PointLight / SpotLight etc.*/
   /* Create Lights: PointLight / SpotLight etc.*/
   var spotLight = new THREE.SpotLight(0xffffff);
   spotLight.position.set(100, 100, 100);
   spotLight.castShadow = true; //If set to true light will cast dynamic shadows. Warning: This is expensive and requires tweaking to get shadows looking right.
-  spotLight.shadowMapWidth = 1024;
-  spotLight.shadowMapHeight = 1024;
-  spotLight.shadowCameraNear = 500;
-  spotLight.shadowCameraFar = 4000;
-  spotLight.shadowCameraFov = 30;
+  spotLight.shadow.mapSize.width = 1024;
+  spotLight.shadow.mapSize.height = 1024;
+
   scene.add(spotLight);
 
   /* Create Material */
@@ -29,10 +29,12 @@ export function DemoMeshPhongMaterial(THREE) {
                                                      Setting this the same color as the diffuse value (times some intensity) makes the material more metallic-looking;
                                                      setting this to some gray makes the material look more plastic. Default is dark gray.*/
       shininess: 1,                                  //How shiny the specular highlight is; a higher value gives a sharper highlight. Default is 30.
-      shading: THREE.FlatShading,                  //How the triangles of a curved surface are rendered: THREE.SmoothShading, THREE.FlatShading, THREE.NoShading
-      wireframe: 1,                                  //THREE.Math.randInt(0,1)
+      // shading: THREE.FlatShading,                  //How the triangles of a curved surface are rendered: THREE.SmoothShading, THREE.FlatShading, THREE.NoShading
+      wireframe: true,                                  //THREE.Math.randInt(0,1)
       transparent: 1,
-      opacity: 0.15                                //THREE.Math.randFloat(0,1)
+      opacity: 0.15,
+      // fog: true
+      vertexColors: true
     });
     return material;
   }
@@ -66,7 +68,7 @@ export function DemoMeshPhongMaterial(THREE) {
   function render() {
     requestAnimationFrame(render);
 // earth.rotation.x += 0.01;
-// earth.rotation.y += 0.01;
+earth.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
 

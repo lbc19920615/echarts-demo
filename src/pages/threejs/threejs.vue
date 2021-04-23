@@ -1,15 +1,22 @@
 <style lang="scss">
 .page-threejs {
   position: absolute;
-  text-align: center;
   width: 100%;
+  .canvas {
+    display: block;
+    margin: auto;
+  }
 }
 </style>
 
 <template>
   <div class="page-threejs">
-    <simple-dialog open>
-      <div>sdsds</div>
+    <el-button type="grd" size="small" @click="openDialog1 = true"
+               style="--grd-btn-width: 90px; --grd-btn-height: 30px;"
+    >打开dialog1</el-button>
+
+    <simple-dialog :open="openDialog1" @closed="openDialog1 = false">
+      <div style="width: 600px; height: 300px;">sdsds</div>
     </simple-dialog>
 
     <canvas class="canvas" ref="canvas" />
@@ -23,8 +30,13 @@ import {DemoMeshPhongMaterial} from "@/threejs/demo1";
 window.THREE = THREE;
 
 export default {
+  data() {
+    return {
+      openDialog1: false
+    }
+  },
   mounted() {
-    DemoMeshPhongMaterial(THREE)
+    DemoMeshPhongMaterial(THREE, this)
   }
 }
 </script>
