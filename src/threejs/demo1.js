@@ -1,14 +1,9 @@
+import {createThreejsCommon} from "@/threejs/common";
+
 export function DemoMeshPhongMaterial(THREE, context) {
-  const size = [ 1024, 768 ]
-
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(75, size[0] / size[1], 0.1, 1000);
-  var renderer = new THREE.WebGLRenderer({
-    alpha: true,
+  let { scene, camera, renderer } = createThreejsCommon(THREE, {
     canvas: context.$refs.canvas
-  });
-
-  renderer.setSize(size[0], size[1]);
+  })
 
   /* Create Lights: PointLight / SpotLight etc.*/
   /* Create Lights: PointLight / SpotLight etc.*/
