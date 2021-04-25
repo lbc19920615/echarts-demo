@@ -6,6 +6,17 @@
     display: block;
     margin: auto;
   }
+
+  gltf-modelviewer {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  gltf-modelviewer canvas {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
 
@@ -27,6 +38,8 @@
       >{{ThreejsDemosKey}}</el-button>
     </div>
 
+    <gltf-modelviewer
+        role="img" aria-label="It's a donut" src="https://terabaud.github.io/blender-experimenting/leas-donut.glb" autorotate></gltf-modelviewer>
 
     <canvas class="canvas"
             v-if="resetCanvas"
@@ -53,7 +66,7 @@ export default {
     // DemoMeshPhongMaterial(THREE, this)
     this.resetCanvas = true
     setTimeout(() => {
-      ThreejsDemos.DemoLine1(THREE, this)
+      ThreejsDemos.DemoGltf1(THREE, this)
     }, 30)
   },
    methods: {

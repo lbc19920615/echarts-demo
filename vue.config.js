@@ -13,7 +13,7 @@ module.exports = {
       },
     },
   },
-  chainWebpack: config => {
-    console.log(config.module.rules)
-  }
+  // chainWebpack: config => {
+  //   console.log(config.module.rules)
+  // }
 }
