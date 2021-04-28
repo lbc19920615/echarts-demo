@@ -11,6 +11,8 @@ module.exports = {
       sass: {
         implementation: require('sass'), // This line must in sass option
       },
+      less:{
+      }
     },
   },
   // chainWebpack: config => {
