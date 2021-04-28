@@ -1,6 +1,13 @@
-@import "../config/style-vars.json";
+@import "./func";
+@import "../config/style-vars.yml";
 
-@debug $a;
-:root {
-  --a-test: $a;
+@function get-config($str-path) {
+  @return lodash-simple-get($str-path, $vars);
+}
+
+$config: (a: (b: (c: d)));
+
+html {
+  --font-family: #{get-config("red")};
+  @debug lodash-simple-get("a.b.c", $config);
 }

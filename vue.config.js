@@ -1,4 +1,4 @@
-var jsonImporter = require('node-sass-json-importer');
+var yamlImporter = require('node-sass-yaml-importer');
 
 module.exports = {
   publicPath: '/charts',
@@ -13,7 +13,9 @@ module.exports = {
       sass: {
         implementation: require('sass'), // This line must in sass option
         sassOptions: {
-          importer: jsonImporter(),
+          importer: [
+            yamlImporter
+          ],
         }
       },
       less:{
