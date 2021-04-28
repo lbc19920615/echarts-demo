@@ -35,7 +35,6 @@
   border: var(--grd-border-width) solid #000;
   background-color: transparent;
   background-image: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
-  color: #fff;
   border-radius: var(--grd-border-radius);
   padding: 0;
   border: none;
@@ -44,7 +43,6 @@
   background-color: transparent;
   -webkit-animation: play-grd-btn 1.6s ease-in infinite;
           animation: play-grd-btn 1.6s ease-in infinite;
-  color: #fff;
 }
 .fui-app .el-button--grd > span {
   width: var(--grd-btn-width);
@@ -52,7 +50,7 @@
   line-height: var(--grd-btn-height);
   display: block;
   margin: 3px;
-  background: #000;
+  background-color: var(--grd-bgc, #fff);
   border-radius: calc(var(--grd-border-radius) - var(--grd-border-width));
 }
 
@@ -97,6 +95,39 @@ fui-section::part(fui-section)::before, fui-section::part(fui-section)::after {
   height: 0.5rem;
 }
 
-one-dialog ::part(wrapper) {
+simple-dialog {
+  --dialog-close-h: 30px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: -1;
+  opacity: 0;
+}
+simple-dialog[open]::part(wrapper) {
   z-index: 3000;
+}
+simple-dialog::part(header) {
+  position: relative;
+  height: var(--dialog-close-h);
+}
+simple-dialog::part(close) {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+simple-dialog[open] {
+  z-index: var(--simple-dialog-z-index, 3000);
+  opacity: 1;
 }

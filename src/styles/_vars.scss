@@ -1,0 +1,6 @@
+@import "../config/style-vars.json";
+
+@debug $a;
+:root {
+  --a-test: $a;
+}

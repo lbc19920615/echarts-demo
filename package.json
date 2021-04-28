@@ -37,6 +37,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^4.1.1",
     "less-loader": "^7.3.0",
+    "node-sass-json-importer": "^4.3.0",
     "sass": "^1.32.10",
     "sass-loader": "^10.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",

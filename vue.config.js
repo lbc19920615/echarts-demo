@@ -1,3 +1,5 @@
+var jsonImporter = require('node-sass-json-importer');
+
 module.exports = {
   publicPath: '/charts',
   devServer: {
@@ -10,6 +12,9 @@ module.exports = {
       },
       sass: {
         implementation: require('sass'), // This line must in sass option
+        sassOptions: {
+          importer: jsonImporter(),
+        }
       },
       less:{
       }
