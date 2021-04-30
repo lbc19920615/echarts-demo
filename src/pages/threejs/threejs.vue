@@ -38,8 +38,8 @@
       >{{ThreejsDemosKey}}</el-button>
     </div>
 
-    <gltf-modelviewer
-        role="img" aria-label="It's a donut" src="https://terabaud.github.io/blender-experimenting/leas-donut.glb" autorotate></gltf-modelviewer>
+    <!-- <gltf-modelviewer
+        role="img" aria-label="It's a donut" src="https://terabaud.github.io/blender-experimenting/leas-donut.glb" autorotate></gltf-modelviewer> -->
 
     <canvas class="canvas"
             v-if="resetCanvas"

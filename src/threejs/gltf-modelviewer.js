@@ -337,32 +337,32 @@ const getByName = (children, regex) => {
   return result;
 }
 
-customElements.whenDefined('gltf-modelviewer').then(() => {
-  setTimeout(() => {
-    const modelViewer = $('gltf-modelviewer');
-    const gui = new dat.GUI();
-    const scene = modelViewer.scene;
+// customElements.whenDefined('gltf-modelviewer').then(() => {
+//   setTimeout(() => {
+//     const modelViewer = $('gltf-modelviewer');
+//     const gui = new dat.GUI();
+//     const scene = modelViewer.scene;
 
-    console.log('sdsdsds', modelViewer.scene)
+//     // console.log('sdsdsds', modelViewer.scene)
 
-    gui.addColor(options, 'sprinkleColor').onChange(() => {
-      const sprinkles = getByName(scene.children, /Sprinkle[SML]/);
-      for (const sprinkle of sprinkles) {
-        sprinkle.material.color.set(options.sprinkleColor)
-      }
-    })
-    gui.addColor(options, 'ballColor').onChange(() => {
-      const sprinkles = getByName(scene.children, /Ball/);
-      for (const sprinkle of sprinkles) {
-        sprinkle.material.color.set(options.ballColor)
-      }
-    })
-    gui.addColor(options, 'icingColor').onChange(() => {
-      const icings = getByName(scene.children, /Icing/);
-      console.log(icings[0].material)
-      for (const icing of icings) {
-        icing.material.color.set(options.icingColor)
-      }
-    })
-  }, 1000)
-});
+//     gui.addColor(options, 'sprinkleColor').onChange(() => {
+//       const sprinkles = getByName(scene.children, /Sprinkle[SML]/);
+//       for (const sprinkle of sprinkles) {
+//         sprinkle.material.color.set(options.sprinkleColor)
+//       }
+//     })
+//     gui.addColor(options, 'ballColor').onChange(() => {
+//       const sprinkles = getByName(scene.children, /Ball/);
+//       for (const sprinkle of sprinkles) {
+//         sprinkle.material.color.set(options.ballColor)
+//       }
+//     })
+//     gui.addColor(options, 'icingColor').onChange(() => {
+//       const icings = getByName(scene.children, /Icing/);
+//       console.log(icings[0].material)
+//       for (const icing of icings) {
+//         icing.material.color.set(options.icingColor)
+//       }
+//     })
+//   }, 1000)
+// });
